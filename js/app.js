@@ -104,7 +104,7 @@ addExpense(expense){
 totalExpense(){
   let total = 0;
 if(this.itemList.length>0){
-  total = this.itemList.reduce(function(acc, curr) {
+  total = this.itemList.reduce((acc, curr) => {
     acc += curr.amount ;
     return acc;
   }, 0);
@@ -119,14 +119,14 @@ editExpense(element){
   //remove from DOM
   this.expenseList.removeChild(parent);
   //remove from the DOM
-  let expense = this.itemList.filter(function(item){
+  let expense = this.itemList.filter((item) => {
     return item.id === id;
   });
   //show value
   this.expenseInput.value = expense[0].title;
   this.amountInput.value = expense[0].amount;
   //remove from list
-  let tempList = this.itemList.filter(function(item){
+  let tempList = this.itemList.filter((item) => {
     return item.id !== id;
   });
   this.itemList = tempList;
@@ -138,11 +138,11 @@ deleteExpense(element){
   //remove from DOM
   this.expenseList.removeChild(parent);
   //remove from the DOM
-  let expense = this.itemList.filter(function(item){
+  let expense = this.itemList.filter((item) => {
     return item.id === id;
   });
   //remove from list
-  let tempList = this.itemList.filter(function(item){
+  let tempList = this.itemList.filter((item) => {
     return item.id !== id;
   });
   this.itemList = tempList;
@@ -160,19 +160,19 @@ const ui = new UI()
 
 
 // budget from submit
-budgetForm.addEventListener('submit', function(event){
+budgetForm.addEventListener('submit', (event) => {
   event.preventDefault();
   ui.submitBudgetForm();
 })
 
 // expense from submit
-expenseForm.addEventListener('submit', function(event){
+expenseForm.addEventListener('submit', (event) => {
   event.preventDefault();
   ui.submitExpenseForm();
 })
 
 // expense click
-expenseList.addEventListener('click', function(event){
+expenseList.addEventListener('click', (event) => {
   if(event.target.parentElement.classList.contains('edit-icon')){
 ui.editExpense(event.target.parentElement)
   }
@@ -182,6 +182,6 @@ ui.deleteExpense(event.target.parentElement)
 });
 }
 
-document.addEventListener('DOMContentLoaded', function(){
+document.addEventListener('DOMContentLoaded', () => {
   eventListeners();
 })
